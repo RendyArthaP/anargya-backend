@@ -7,5 +7,5 @@ mongoose.connect(MONGODB_LIVE, {
   useFindAndModify: false
 })
 
-const dbConfigMongo = mongoose.connection;
+const dbConfigMongo = mongoose.connection
 module.exports = dbConfigMongo
