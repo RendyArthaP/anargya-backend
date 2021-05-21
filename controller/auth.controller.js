@@ -7,7 +7,7 @@ module.exports = {
   handleLoginUser: async (req, res) => {
     const { name, password } = req.body
     let users = await UserAnargya.findOne({name})
-    const comparePassword = bycrypt.compareSync(password, users.passwordUser) 
+    const comparePassword = bcrypt.compareSync(password, users.passwordUser) 
   
     if(users && comparePassword) {
       users = users.toObject()
