@@ -34,6 +34,21 @@ module.exports = {
     }
   },
 
+  getProductByCategory: async (req, res) => {
+    const product = await ProductAnargya.find({
+      "categoryProduct": req.params.category
+    })
+
+    try {
+      res.status(200).json({
+        message: "You get the product by category",
+        data: product
+      })
+    } catch(error) {
+      res.status(500).send(error)
+    }
+  },
+
   postProduct: async (req, res) => {
     const product = await ProductAnargya.create(req.body)
 
