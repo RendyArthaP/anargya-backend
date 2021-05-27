@@ -5,8 +5,8 @@ const { JWT_KEY } = require('../config')
 
 module.exports = {
   handleLoginUser: async (req, res) => {
-    const { name, password } = req.body
-    let users = await UserAnargya.findOne({name})
+    const { email, password } = req.body
+    let users = await UserAnargya.findOne({email})
     const comparePassword = bcrypt.compareSync(password, users.passwordUser) 
   
     if(users && comparePassword) {
