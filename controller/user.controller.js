@@ -13,6 +13,7 @@ module.exports = {
       res.status(500).send(error)
     }
   },
+
   getUserById: async (req, res) => {
     const ids = req.params.id
     const user = await UserAnargya.findById(ids)
@@ -58,6 +59,7 @@ module.exports = {
       res.status(500).send(error)
     }
   },
+  
   deleteUser: async (req, res) => {
     const ids = req.params.id
     
