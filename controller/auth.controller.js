@@ -6,9 +6,9 @@ const { JWT_KEY } = require('../config')
 module.exports = {
   handleLoginUser: async (req, res) => {
     const { email, password } = req.body
-    let users = await UserAnargya.findOne({email})  
+    let users = await UserAnargya.findOne({email})
   
-    if(users && bcrypt.compareSync(password, users.passwordUser)) {
+    if(users && bcrypt.compareSync(password, users.password)) {
       users = users.toObject()
       const { password, ...payload } = users
       const token = jwt.sign(payload, JWT_KEY)
