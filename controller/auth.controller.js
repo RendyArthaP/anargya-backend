@@ -6,10 +6,9 @@ const { JWT_KEY } = require('../config')
 module.exports = {
   handleLoginUser: async (req, res) => {
     const { email, password } = req.body
-    let users = await UserAnargya.findOne({email})
-    const comparePassword = bcrypt.compareSync(password, users.passwordUser) 
+    let users = await UserAnargya.findOne({email})  
   
-    if(users && comparePassword) {
+    if(users && bcrypt.compareSync(password, users.passwordUser)) {
       users = users.toObject()
       const { password, ...payload } = users
       const token = jwt.sign(payload, JWT_KEY)
@@ -20,7 +19,7 @@ module.exports = {
         token
       })
     } else {
-      res.status(500).json({
+      res.status(500).send({
         message: "Invalid email or password"
       })
     }
