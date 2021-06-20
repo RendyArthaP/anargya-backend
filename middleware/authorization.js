@@ -9,7 +9,7 @@ const verifyToken = (req, res, next) => {
     })
   }
 
-  const token = header.split(' ')[1]
+  const token = header.split(' ')[0]
   if(!token) {
     res.status(500).json({
       message: "Invalid token!"

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router()
+const verifyToken = require('../middleware/authorization');
 
 const {
   getCart,
@@ -13,7 +14,7 @@ const {
 router.get('/', getCart)
 router.get('/user/:user_id', getCartByUser)
 router.get('/:id', getCartByIdCart)
-router.post('/', addCart)
+router.post('/', verifyToken, addCart)
 router.put('/:id', updateCart)
 router.delete('/:id', deleteCart)
 
