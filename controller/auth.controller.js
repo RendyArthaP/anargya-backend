@@ -31,16 +31,16 @@ module.exports = {
 
   handleRegisterUser: async (req, res) => {
     const { name, email, password, address, phone} = req.body
+    const existingUser = await UserAnargya.findOne({email})
+    const hashPassword = await bcrypt.hash(password, 10)
 
     try {
-      const existingUser = await UserAnargya.findOne({ email })
       if(existingUser) {
         res.status(400).json({
           message: "Email Already Registered, Please Register With Another Email"
         })
       }
-
-      const hashPassword = await bcrypt.hash(password, 10)
+      
       if(!hashPassword) throw new Error('Hash password error')
 
       const User = await UserAnargya.create({
